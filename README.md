@@ -12,13 +12,11 @@ In project `build.gradle`:
 ```groovy
 buildscript {
   repositories {
-    maven {
-        url "todo"
-    }
+    maven { url "https://jitpack.io" }
   }
   
   dependencies {
-    classpath "com.publicinmotion.gradle:zander:0.0.1"
+    classpath "com.github.PublicInMotionGmbH:ZanderGradlePlugin:-SNAPSHOT"
   }
 }
 ```
