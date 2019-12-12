@@ -13,6 +13,10 @@ abstract class PublishTask @Inject constructor(
     private val variant: ApplicationVariant
 ) : DefaultTask() {
 
+    init {
+        group = "publishing"
+    }
+
     private val networkResponseMapper = NetworkResponseMapper()
 
     private val sendFileUseCase = SendFile(

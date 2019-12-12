@@ -7,9 +7,7 @@ plugins {
 }
 
 group = "com.publicinmotion.gradle"
-version = "0.0.2"
-
-//sourceCompatibility = 1.8
+version = "0.0.1"
 
 repositories {
     google()
