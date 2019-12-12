@@ -57,20 +57,3 @@ class SendFile(val url: String, val globalLogger: Logger, val authorization: Str
         return client.newCall(request).execute()
     }
 }
-/**
- * Response:
- * {
-    "downloadUrl": "url//DBFFED33-4521-4D09-A330-B7A7669087C5/app-branding-debug-4.8.0.localBuild.apk",
-    "buildMetadata": {
-    "version": "4.7",
-    "buildNumber": "1",
-    "updatedAt": "2019-12-10T15:36:17Z",
-    "id": "DBFFED33-4521-4D09-A330-B7A7669087C5",
-    "appId": "869D9853-C270-4687-9BF2-4019242ADA84",
-    "releaseNotes": "Test",
-    "createdAt": "2019-12-10T15:36:16Z",
-    "buildFileName": "app-branding-debug-4.8.0.localBuild.apk",
-    "buildUploadDate": "2019-12-10T15:36:17Z"
-}
-}
- */

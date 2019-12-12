@@ -4,24 +4,17 @@ import io.kotlintest.assertSoftly
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
 import okhttp3.MultipartBody
-import org.slf4j.LoggerFactory
-import java.io.File
 
 class SendFileTest : StringSpec({
-    val givenArtifactt = ApkArtifact(
-        file = File("src/test/resources/mockartifact.apk"),
-        version = "4.2.0",
-        releaseNotes = "Some release note",
-        buildNumber = "402000"
-    )
+
     "it should send file with proper headers"{
         val useCase = SendFile(
             url = "https://zander.domain.com",
             authorization = "asd123",
-            globalLogger = LoggerFactory.getLogger("test")
+            globalLogger = testLogger
         )
 
-        val headers = useCase.execute(givenArtifactt).request.headers
+        val headers = useCase.execute(givenArtifact).request.headers
 
         assertSoftly {
             headers["Authorization"] shouldBe "Basic asd123"
@@ -36,10 +29,10 @@ class SendFileTest : StringSpec({
         val useCase = SendFile(
             url = "https://zander.domain.com",
             authorization = "asd123",
-            globalLogger = LoggerFactory.getLogger("test")
+            globalLogger = testLogger
         )
 
-        val request = useCase.execute(givenArtifactt).request
+        val request = useCase.execute(givenArtifact).request
         val contentType = request.body?.contentType()
         val requestBody = request.body!!
 

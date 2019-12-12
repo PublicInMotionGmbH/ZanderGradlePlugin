@@ -13,6 +13,8 @@ abstract class PublishTask @Inject constructor(
     private val variant: ApplicationVariant
 ) : DefaultTask() {
 
+    private val networkResponseMapper = NetworkResponseMapper()
+
     private val sendFileUseCase = SendFile(
         url = CreateUrlForVariantUseCase().execute(extension.url, variant),
         authorization = extension.oAuthCredentials,
@@ -34,12 +36,20 @@ abstract class PublishTask @Inject constructor(
                 releaseNotes = extension.releaseNotes,
                 version = extension.version
             )
-        )
+        ).let(networkResponseMapper::map)
 
-        if (response.isSuccessful) {
-            logger.log(LogLevel.WARN, "Uploaded file to ${response.body?.string()}")
-        } else {
-            throw TaskExecutionException(this, Error("Failed to publish APK: ${response.message}"))
+        when (response) {
+            is ZanderResponse.Success -> {
+                logger.log(LogLevel.WARN, "Uploaded file to ${response.downloadUrl}")
+                logger.info("Build upload info: $response")
+            }
+            is ZanderResponse.Error -> {
+                logger.log(LogLevel.WARN, "Upload failed")
+                throw TaskExecutionException(
+                    this,
+                    Error("Failed to publish APK: ${response.errorCode}, ${response.message}")
+                )
+            }
         }
     }
 

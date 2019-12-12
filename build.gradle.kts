@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.publicinmotion.gradle"
-version = "0.0.1"
+version = "0.0.2"
 
 //sourceCompatibility = 1.8
 
@@ -41,6 +41,7 @@ dependencies {
 
     implementation("com.squareup.okhttp3:okhttp:4.2.1")
     implementation("com.squareup.okhttp3:logging-interceptor:4.2.1")
+    implementation("com.google.code.gson:gson:2.8.6")
     implementation("com.android.tools.build:gradle:3.3.2")
 
     testCompileOnly(gradleTestKit())
