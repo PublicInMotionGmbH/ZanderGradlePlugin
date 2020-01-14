@@ -34,6 +34,10 @@ open class ZanderPluginExtension @Inject constructor(
         this.version = version
     }
 
+    fun timeoutSeconds(timeoutSeconds: Long) {
+        this.timeoutSeconds = timeoutSeconds
+    }
+
     companion object {
         private const val DEFAULT_TIMEOUT_SECONDS = 30L
     }
