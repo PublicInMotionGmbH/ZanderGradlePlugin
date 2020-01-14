@@ -12,7 +12,7 @@ open class ZanderPluginExtension @Inject constructor(
     var buildNumber: String = ""
     var releaseNotes: String = ""
     var version: String = ""
-    var timeoutSeconds: Long = DEFAULT_TIMEOUT_SECONDS
+    var connectTimeoutSeconds: Long = DEFAULT_TIMEOUT_SECONDS
 
     fun oAuthCredentials(credentials: String) {
         oAuthCredentials = credentials
@@ -34,8 +34,8 @@ open class ZanderPluginExtension @Inject constructor(
         this.version = version
     }
 
-    fun timeoutSeconds(timeoutSeconds: Long) {
-        this.timeoutSeconds = timeoutSeconds
+    fun connectTimeoutSeconds(connectTimeoutSeconds: Long) {
+        this.connectTimeoutSeconds = connectTimeoutSeconds
     }
 
     companion object {

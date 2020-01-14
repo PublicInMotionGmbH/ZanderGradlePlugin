@@ -23,7 +23,7 @@ abstract class PublishTask @Inject constructor(
         url = CreateUrlForVariantUseCase().execute(extension.url, variant),
         authorization = extension.oAuthCredentials,
         globalLogger = logger,
-        timeoutSeconds = extension.timeoutSeconds
+        connectTimeoutSeconds = extension.connectTimeoutSeconds
     )
 
     @TaskAction

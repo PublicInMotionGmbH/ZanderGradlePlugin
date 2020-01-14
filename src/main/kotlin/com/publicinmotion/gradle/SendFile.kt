@@ -15,7 +15,7 @@ class SendFile(
     val url: String,
     val globalLogger: Logger,
     val authorization: String,
-    timeoutSeconds: Long
+    connectTimeoutSeconds: Long
 ) {
 
     private val httpLogger: HttpLoggingInterceptor.Logger = object : HttpLoggingInterceptor.Logger {
@@ -26,9 +26,9 @@ class SendFile(
 
     private val client = OkHttpClient()
         .newBuilder()
-        .callTimeout(timeoutSeconds, TimeUnit.SECONDS)
-        .writeTimeout(timeoutSeconds, TimeUnit.SECONDS)
-        .readTimeout(timeoutSeconds, TimeUnit.SECONDS)
+        .callTimeout(connectTimeoutSeconds, TimeUnit.SECONDS)
+        .writeTimeout(connectTimeoutSeconds, TimeUnit.SECONDS)
+        .readTimeout(connectTimeoutSeconds, TimeUnit.SECONDS)
         .addInterceptor(HttpLoggingInterceptor(httpLogger).apply {
             level = HttpLoggingInterceptor.Level.HEADERS
         })
