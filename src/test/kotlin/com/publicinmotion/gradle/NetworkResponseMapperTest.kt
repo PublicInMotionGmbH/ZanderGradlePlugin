@@ -40,7 +40,8 @@ class NetworkResponseMapperTest : StringSpec({
         val sendFile = SendFile(
             url = baseUrl.toString(),
             authorization = "asd123",
-            globalLogger = testLogger
+            globalLogger = testLogger,
+            connectTimeoutSeconds = 30
         )
 
         val response = sendFile.execute(givenArtifact)
@@ -77,7 +78,8 @@ class NetworkResponseMapperTest : StringSpec({
         val sendFile = SendFile(
             url = baseUrl.toString(),
             authorization = "asd123",
-            globalLogger = testLogger
+            globalLogger = testLogger,
+            connectTimeoutSeconds = 30
         )
 
         val response = sendFile.execute(givenArtifact)

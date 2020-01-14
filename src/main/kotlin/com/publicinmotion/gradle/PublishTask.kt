@@ -22,7 +22,8 @@ abstract class PublishTask @Inject constructor(
     private val sendFileUseCase = SendFile(
         url = CreateUrlForVariantUseCase().execute(extension.url, variant),
         authorization = extension.oAuthCredentials,
-        globalLogger = logger
+        globalLogger = logger,
+        connectTimeoutSeconds = extension.connectTimeoutSeconds
     )
 
     @TaskAction
