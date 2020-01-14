@@ -36,6 +36,6 @@ zander {
   version "1.2.3"
   buildNumber "100200300"
   releaseNotes "[MA-2136] Bugfix"
-  timeoutSeconds 30
+  connectTimeoutSeconds 30
 }
 ```
