@@ -11,7 +11,12 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.slf4j.Logger
 import java.util.concurrent.TimeUnit
 
-class SendFile(val url: String, val globalLogger: Logger, val authorization: String) {
+class SendFile(
+    val url: String,
+    val globalLogger: Logger,
+    val authorization: String,
+    timeoutSeconds: Long
+) {
 
     private val httpLogger: HttpLoggingInterceptor.Logger = object : HttpLoggingInterceptor.Logger {
         override fun log(message: String) {
@@ -21,9 +26,9 @@ class SendFile(val url: String, val globalLogger: Logger, val authorization: Str
 
     private val client = OkHttpClient()
         .newBuilder()
-        .callTimeout(30, TimeUnit.SECONDS)
-        .writeTimeout(30, TimeUnit.SECONDS)
-        .readTimeout(30, TimeUnit.SECONDS)
+        .callTimeout(timeoutSeconds, TimeUnit.SECONDS)
+        .writeTimeout(timeoutSeconds, TimeUnit.SECONDS)
+        .readTimeout(timeoutSeconds, TimeUnit.SECONDS)
         .addInterceptor(HttpLoggingInterceptor(httpLogger).apply {
             level = HttpLoggingInterceptor.Level.HEADERS
         })

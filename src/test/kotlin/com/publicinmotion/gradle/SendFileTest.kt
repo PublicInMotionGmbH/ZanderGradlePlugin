@@ -11,7 +11,8 @@ class SendFileTest : StringSpec({
         val useCase = SendFile(
             url = "https://zander.domain.com",
             authorization = "asd123",
-            globalLogger = testLogger
+            globalLogger = testLogger,
+            timeoutSeconds = 30
         )
 
         val headers = useCase.execute(givenArtifact).request.headers
@@ -29,7 +30,8 @@ class SendFileTest : StringSpec({
         val useCase = SendFile(
             url = "https://zander.domain.com",
             authorization = "asd123",
-            globalLogger = testLogger
+            globalLogger = testLogger,
+            timeoutSeconds = 30
         )
 
         val request = useCase.execute(givenArtifact).request
